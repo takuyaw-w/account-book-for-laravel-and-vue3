@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard.welcome');
-})->name('dashboard');
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', function () {
+        return view('dashboard.welcome');
+    })->name('dashboard');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+});
 
-Route::get('/login', [LoginController::class, 'index']);
-Route::post('/signIn', [LoginController::class, 'signIn'])->name('signIn');
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::post('/sign_in', [LoginController::class, 'signIn'])->name('sign_in');
+});

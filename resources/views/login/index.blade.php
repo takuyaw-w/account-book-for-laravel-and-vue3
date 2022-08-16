@@ -1,10 +1,13 @@
 @extends('layout.base')
 @section('main')
     <v-container fluid class="fill-height">
+        @error('AuthError')
+            <v-alert type="error">{{ $message }}</v-alert>
+        @enderror
         <v-row justify="center" align="center">
             <v-col align="center" cols="12">
                 <v-card border width="600" class="mt-12 pb-4">
-                    <v-form action="{{ route('signIn') }}" method="post">
+                    <v-form action="{{ route('sign_in') }}" method="post">
                         @csrf
                         <v-card-title color="primary">
                             <div class="text-center">{{ config('app.name') }}</div>

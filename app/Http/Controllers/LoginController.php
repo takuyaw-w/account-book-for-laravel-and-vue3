@@ -3,11 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Services\LoginService;
+use Illuminate\Support\Facades\Request;
 
 class LoginController extends Controller
 {
-    //
+    public function __construct(LoginService $service)
+    {
+        $this->service = $service;
+    }
+
     public function index()
     {
         return view('login.index');
@@ -16,11 +21,11 @@ class LoginController extends Controller
     public function signIn(LoginRequest $request)
     {
         $credentials = $request->safe()->only('email', 'password');
-        $request->session()->regenerateToken();
+        return $this->service->signIn($credentials);
+    }
 
-        if (Auth::attempt($credentials)) {
-            // 認証に成功した
-            return redirect(route('dashboard'));
-        }
+    public function logout(Request $request)
+    {
+        return $this->service->logout();
     }
 }
