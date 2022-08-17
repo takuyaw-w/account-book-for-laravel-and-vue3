@@ -2,14 +2,13 @@ import "./bootstrap";
 import "vuetify/styles";
 import "@mdi/font/css/materialdesignicons.css";
 import { createApp } from "vue/dist/vue.esm-bundler";
-import { createVuetify } from "vuetify";
+import { createVuetify, ThemeDefinition } from "vuetify";
 import { mdi } from "vuetify/iconsets/mdi";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 import * as projectComponents from "./components";
 
-/** @type {import('vuetify').ThemeDefinition} */
-const myTheme = {
+const myTheme: ThemeDefinition = {
     dark: false,
     colors: {
         background: "#FFFFFF",
@@ -23,7 +22,11 @@ const myTheme = {
     },
 };
 
-const app = createApp();
+const app = createApp({
+    components: {
+        ...projectComponents,
+    },
+});
 const vuetify = createVuetify({
     theme: {
         defaultTheme: "myTheme",
@@ -38,7 +41,6 @@ const vuetify = createVuetify({
         },
     },
     components: {
-        ...projectComponents,
         ...components,
     },
     directives,
