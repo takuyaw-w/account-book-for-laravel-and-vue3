@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function __construct(LoginService $service)
     {
-        $this->service = $service;
+        $this->loginService = $service;
     }
 
     public function index()
@@ -21,11 +21,11 @@ class LoginController extends Controller
     public function signIn(LoginRequest $request)
     {
         $credentials = $request->safe()->only('email', 'password');
-        return $this->service->signIn($credentials);
+        return $this->loginService->signIn($credentials);
     }
 
     public function logout(Request $request)
     {
-        return $this->service->logout();
+        return $this->loginService->logout();
     }
 }
