@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,6 @@ Route::group(['middleware' => 'auth'], function() {
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/sign_in', [LoginController::class, 'signIn'])->name('sign_in');
+    Route::get('/register', [RegisterController::class, 'index'])->name('register');
+    Route::post('/sign_up', [RegisterController::class, 'signUp'])->name('sign_up');
 });
