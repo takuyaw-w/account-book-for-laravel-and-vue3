@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::group(['middleware' => 'auth'], function() {
         return view('dashboard.welcome');
     })->name('dashboard');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
 });
 
 Route::group(['middleware' => 'guest'], function () {
