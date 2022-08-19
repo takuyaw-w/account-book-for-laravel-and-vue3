@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/dashboard', function () {
+    Route::get('/', function () {
         return view('dashboard.welcome');
     })->name('dashboard');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
