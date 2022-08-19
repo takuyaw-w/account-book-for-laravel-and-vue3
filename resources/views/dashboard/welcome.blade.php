@@ -6,7 +6,7 @@
                 <v-card-title>
                   科目追加
                 </v-card-title>
-                <v-form action="hoge.php" method="post">
+                <v-form action="{{ route('item.store') }}" method="post">
                     @csrf
                     <v-card-text>
                         <v-row>
@@ -45,12 +45,12 @@
                             </v-col>
                             <v-col cols="6">
                                 <v-text-field
-                                    name="memo"
+                                    name="note"
                                     variant="outlined"
-                                    label="memo"
+                                    label="note"
                                     counter="20"
                                     maxlength="20"
-                                    @error('memo')
+                                    @error('note')
                                         error-messages="{{ $message }}"
                                     @enderror
                                 ></v-text-field>
