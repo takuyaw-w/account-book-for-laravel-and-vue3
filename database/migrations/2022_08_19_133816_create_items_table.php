@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('category')->nullable(false);
-            $table->integer('price')->nullable(false);
+            $table->integer('price')->default(0);
             $table->string('note', 100)->nullable(true);
             $table->timestamps();
         });
