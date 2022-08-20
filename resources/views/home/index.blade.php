@@ -71,32 +71,29 @@
         <v-col>
             <v-card>
                 <template #title>
-                    fugaaa
+                    登録データ一覧
                 </template>
                 <v-card-text>
+                    {{ $items }}
                     <table>
                         <thead>
                             <tr>
-                                <th class="text-left">Name</th>
-                                <th class="text-left">Calories</th>
+                                <th>
+                                    #
+                                </th>
+                                <th>
+                                    項目
+                                </th>
+                                <th>
+                                    金額
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr v-for="hoge as {{ $items }}" v-bind:key="hoge.id">
                                 <td>1</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>2</td>
+                                <td>aaaa</td>
+                                <td>bbbbb</td>
                             </tr>
                         </tbody>
                     </table>

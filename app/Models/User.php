@@ -32,7 +32,7 @@ class User extends Authenticatable
         'password',
     ];
 
-    public function item()
+    public function items()
     {
         return $this->hasMany(Item::class);
     }

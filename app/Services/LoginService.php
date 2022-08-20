@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Item;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Redirector;
@@ -13,7 +14,7 @@ class LoginService
     {
         if (Auth::attempt($credentials)) {
             session()->put(['userName' => Auth::user()->name]);
-            return redirect(route('dashboard'));
+            return redirect(route('home'));
         }
 
         return back()->withErrors(['AuthError' => 'メールアドレスまたはパスワードに誤りがあります。']);

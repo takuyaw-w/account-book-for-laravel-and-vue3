@@ -27,6 +27,6 @@ class RegisterController extends Controller
 
         session()->put(['userName' => Auth::user()->name]);
 
-        return redirect(route('dashboard'));
+        return redirect(route('home'));
     }
 }

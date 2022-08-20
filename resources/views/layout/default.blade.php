@@ -1,8 +1,12 @@
 @extends('layout.base')
 @section('main')
-    <navigation-drawer user-name="{{ session('userName') }}"></navigation-drawer>
-    <v-app-bar app>
+    <v-app-bar app absolute>
         <v-app-bar-title>{{ config('app.name') }}</v-app-bar-title>
+
+        {{-- <v-btn icon>
+            <v-icon>mdi-cog-outline</v-icon>
+        </v-btn> --}}
+
         <template v-slot:append>
             <v-form action="{{ route('logout') }}" method="post">
                 @csrf

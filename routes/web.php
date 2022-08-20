@@ -17,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth'], function() {
-    Route::get('/', function () {
-        return view('dashboard.welcome');
-    })->name('dashboard');
+    Route::get('/', [ItemController::class, 'index'])->name('home');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
