@@ -1,7 +1,7 @@
 import "./bootstrap";
 import "vuetify/styles";
 import "@mdi/font/css/materialdesignicons.css";
-import { createApp } from "vue/dist/vue.esm-bundler";
+import { createApp } from "vue";
 import { createVuetify, ThemeDefinition } from "vuetify";
 import { mdi } from "vuetify/iconsets/mdi";
 import * as components from "vuetify/components";

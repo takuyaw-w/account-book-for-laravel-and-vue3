@@ -90,7 +90,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="hoge as {{ $items }}" v-bind:key="hoge.id">
+                            <tr>
                                 <td>1</td>
                                 <td>aaaa</td>
                                 <td>bbbbb</td>
