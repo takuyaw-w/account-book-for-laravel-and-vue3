@@ -74,30 +74,13 @@
                 <template #title>
                     登録データ一覧
                 </template>
+                <v-card-actions>
+                    <v-btn variant="elevated" color="secondary" size="small">
+                        集計確認
+                    </v-btn>
+                </v-card-actions>
                 <v-card-text>
-                    {{ $items }}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    #
-                                </th>
-                                <th>
-                                    項目
-                                </th>
-                                <th>
-                                    金額
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>aaaa</td>
-                                <td>bbbbb</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <expenses-table v-bind:headers="{{ $headers }}" v-bind:items="{{ $items }}"></expenses-table>
                 </v-card-text>
             </v-card>
         </v-col>

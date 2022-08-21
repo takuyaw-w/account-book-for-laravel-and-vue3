@@ -18,7 +18,21 @@ class ItemController extends Controller
     public function index()
     {
         $items = Item::whereUser(Auth::user()->id)->get();
-        return view('home.index')->with(compact('items'));
+        $headers = collect([
+            [
+                'text' => 'カテゴリー',
+                'value' => 'category'
+            ],
+            [
+                'text' => '金額',
+                'value' => 'price'
+            ],
+            [
+                'text' => '購入日',
+                'value' => 'purchase_date'
+            ]
+        ]);
+        return view('home.index')->with(compact('items', 'headers'));
     }
     //
     public function store(ItemRequest $request)
