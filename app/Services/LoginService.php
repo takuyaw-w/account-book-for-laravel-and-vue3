@@ -13,7 +13,6 @@ class LoginService
     public function signIn(array $credentials): Redirector | RedirectResponse
     {
         if (Auth::attempt($credentials)) {
-            session()->put(['userName' => Auth::user()->name]);
             return redirect(route('home'));
         }
 

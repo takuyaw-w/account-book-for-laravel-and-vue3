@@ -20,7 +20,7 @@ class LoginController extends Controller
 
     public function signIn(LoginRequest $request)
     {
-        $credentials = $request->safe()->only('email', 'password');
+        $credentials = $request->getCredentials();
         return $this->loginService->signIn($credentials);
     }
 

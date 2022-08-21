@@ -27,6 +27,7 @@
                                     variant="outlined"
                                     prefix="¥"
                                     label="price"
+                                    type="number"
                                     @error('price')
                                         error-messages="{{ $message }}"
                                     @enderror

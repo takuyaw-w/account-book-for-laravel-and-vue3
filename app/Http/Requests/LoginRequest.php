@@ -28,4 +28,12 @@ class LoginRequest extends FormRequest
             'password' => 'required|min:8',
         ];
     }
+
+    public function getCredentials()
+    {
+        return [
+            "email" => $this->input('email'),
+            "password" => $this->input('password'),
+        ];
+    }
 }
