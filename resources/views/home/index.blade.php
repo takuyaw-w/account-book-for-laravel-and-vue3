@@ -80,8 +80,11 @@
                     </v-btn>
                 </v-card-actions>
                 <v-card-text>
-                    <expenses-table v-bind:headers="{{ $headers }}" v-bind:items="{{ $items }}"></expenses-table>
+                    <expenses-table :headers="{{ $headers }}" :items="{{ collect($items->items()) }}"></expenses-table>
                 </v-card-text>
+                <v-card-actions>
+                    {{ $items }}
+                </v-card-actions>
             </v-card>
         </v-col>
     </v-row>

@@ -17,7 +17,7 @@ class ItemController extends Controller
 
     public function index()
     {
-        $items = Item::whereUser(Auth::user()->id)->get();
+        $items = Item::whereUser(Auth::user()->id)->simplePaginate(5);
         $headers = collect([
             [
                 'text' => 'カテゴリー',
