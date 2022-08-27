@@ -3,6 +3,7 @@ defineProps<{
     headers: {
         value: string;
         text: string;
+        href?: boolean;
     }[];
     items: any[];
 }>();
@@ -19,9 +20,16 @@ defineProps<{
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in items" :key="item">
+                <tr v-for="(item, index) in items" :key="index">
                     <td v-for="(header, index) in headers" :key="index">
-                        {{ item[header.value] }}
+                        <template v-if="header.href">
+                            <v-btn variant="text" :href="item.href">
+                                {{ item[header.value] }}
+                            </v-btn>
+                        </template>
+                        <template v-else>
+                            {{ item[header.value] }}
+                        </template>
                     </td>
                 </tr>
             </tbody>

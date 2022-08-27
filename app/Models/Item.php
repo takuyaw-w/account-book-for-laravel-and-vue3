@@ -18,6 +18,8 @@ class Item extends Model
         'purchase_date',
     ];
 
+    protected $appends = ['href'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -26,5 +28,10 @@ class Item extends Model
     public function scopeWhereUser(Builder $builder,int $userId)
     {
         return $builder->where('user_id', $userId);
+    }
+
+    public function getHrefAttribute()
+    {
+        return route("home") . "/item/" . $this->attributes['id'];
     }
 }

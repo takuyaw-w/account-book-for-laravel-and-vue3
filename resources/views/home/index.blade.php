@@ -75,7 +75,7 @@
                     登録データ一覧
                 </template>
                 <v-card-actions>
-                    <v-btn variant="elevated" color="secondary" size="small">
+                    <v-btn variant="elevated" href="{{ route("summary") }}" color="secondary" size="small">
                         集計確認
                     </v-btn>
                 </v-card-actions>

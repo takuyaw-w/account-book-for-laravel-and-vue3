@@ -21,16 +21,17 @@ class ItemController extends Controller
         $headers = collect([
             [
                 'text' => 'カテゴリー',
-                'value' => 'category'
+                'value' => 'category',
+                "href" => true
             ],
             [
                 'text' => '金額',
-                'value' => 'price'
+                'value' => 'price',
             ],
             [
                 'text' => '購入日',
-                'value' => 'purchase_date'
-            ]
+                'value' => 'purchase_date',
+            ],
         ]);
         return view('home.index')->with(compact('items', 'headers'));
     }
@@ -40,5 +41,44 @@ class ItemController extends Controller
         $storeData = $request->getStoreData();
         $this->itemService->store($storeData);
         return redirect(route('home'));
+    }
+
+    public function summary()
+    {
+        $hoge = Item::whereUser(Auth::user()->id)->get();
+        $count = collect(array_values($hoge->groupBy("category")->map(function ($h) {
+            return [
+                "category" => $h->first()->category,
+                "count" => $h->count(),
+                "price" => $h->sum("price")
+            ];
+        })->toArray()));
+        $headers = collect([
+            [
+                'text' => 'カテゴリー',
+                'value' => 'category'
+            ],
+            [
+                'text' => '件数',
+                'value' => 'count'
+            ],
+            [
+                'text' => '合計金額',
+                'value' => 'price'
+            ],
+        ]);
+        $paths = collect([
+            [
+                "title" => 'Home',
+                "disabled" => false,
+                "href" => route("home"),
+            ],
+            [
+                "title" => 'Summary',
+                "disabled" => true,
+                "href" => route("summary"),
+            ],
+        ]);
+        return view("summary.index", compact("paths","headers","count"));
     }
 }
