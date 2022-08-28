@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 use App\Services\ItemService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
@@ -34,7 +35,7 @@ class ItemController extends Controller
         ]);
         return view('home.index')->with(compact('items', 'headers'));
     }
-    //
+
     public function store(ItemRequest $request)
     {
         $storeData = $request->getStoreData();
@@ -83,6 +84,30 @@ class ItemController extends Controller
 
     public function show(string $id)
     {
-        dd($id);
+        $paths = collect([
+            [
+                "title" => 'Home',
+                "disabled" => false,
+                "href" => route("home"),
+            ],
+            [
+                "title" => 'Detail',
+                "disabled" => true,
+                "href" => route("item.detail", $id),
+            ],
+        ]);
+        $item = Item::where("id", $id)->first();
+        return view("item.index", compact("paths", "item"));
+    }
+
+    public function update(Request $request)
+    {
+        $item = Item::where("id", $request->id)->first();
+        $item->category = $item->category;
+        $item->price = $request->price;
+        $item->purchase_date = $request->purchase_date;
+        $item->note = $request->note;
+        $item->save();
+        return redirect(route('home'));
     }
 }

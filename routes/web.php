@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
     Route::get("/item/detail/{id}", [ItemController::class, "show"])->name("item.detail");
     Route::get("/summary", [ItemController::class, "summary"])->name("summary");
+    Route::post("/item/update", [ItemController::class, "update"])->name("item.update");
 });
 
 Route::group(['middleware' => 'guest'], function () {
