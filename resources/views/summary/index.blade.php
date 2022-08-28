@@ -2,9 +2,7 @@
 @section('contents')
     <v-row>
         <v-col>
-            <v-breadcrumbs
-                :items="{{ $paths }}"
-            ></v-breadcrumbs>
+            <v-breadcrumbs :items="{{ $paths }}"></v-breadcrumbs>
         </v-col>
     </v-row>
     <v-row>
@@ -14,7 +12,7 @@
                   集計表
                 </v-card-title>
                 <v-card-text>
-                    <expenses-table :headers="{{ $headers }}" :items="{{ $count }}"></expenses-table>
+                    <expenses-table :headers="{{ $headers }}" :items="{{ $groupedItems }}"></expenses-table>
                 </v-card-text>
             </v-card>
         </v-col>

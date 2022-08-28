@@ -21,6 +21,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::post('/item/store', [ItemController::class, 'store'])->name('item.store');
+    Route::get("/item/detail/{id}", [ItemController::class, "show"])->name("item.detail");
     Route::get("/summary", [ItemController::class, "summary"])->name("summary");
 });
 

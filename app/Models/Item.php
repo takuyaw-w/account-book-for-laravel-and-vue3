@@ -32,6 +32,6 @@ class Item extends Model
 
     public function getHrefAttribute()
     {
-        return route("home") . "/item/" . $this->attributes['id'];
+        return route("item.detail", $this->attributes['id']);
     }
 }

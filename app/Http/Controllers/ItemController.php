@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 use App\Services\ItemService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
@@ -45,8 +44,8 @@ class ItemController extends Controller
 
     public function summary()
     {
-        $hoge = Item::whereUser(Auth::user()->id)->get();
-        $count = collect(array_values($hoge->groupBy("category")->map(function ($h) {
+        $ownItems = Item::whereUser(Auth::user()->id)->get();
+        $groupedItems = collect(array_values($ownItems->groupBy("category")->map(function ($h) {
             return [
                 "category" => $h->first()->category,
                 "count" => $h->count(),
@@ -79,6 +78,11 @@ class ItemController extends Controller
                 "href" => route("summary"),
             ],
         ]);
-        return view("summary.index", compact("paths","headers","count"));
+        return view("summary.index", compact("paths","headers","groupedItems"));
+    }
+
+    public function show(string $id)
+    {
+        dd($id);
     }
 }
