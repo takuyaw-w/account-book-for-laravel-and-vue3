@@ -45,14 +45,10 @@ class ItemController extends Controller
 
     public function summary()
     {
-        $ownItems = Item::whereUser(Auth::user()->id)->get();
-        $groupedItems = collect(array_values($ownItems->groupBy("category")->map(function ($h) {
-            return [
-                "category" => $h->first()->category,
-                "count" => $h->count(),
-                "price" => $h->sum("price")
-            ];
-        })->toArray()));
+        $groupedItems = Item::select(\DB::raw("category, count(1) as count, sum(price) as price"))
+            ->whereUser(Auth::user()->id)
+            ->groupBy("category")
+            ->get();
         $headers = collect([
             [
                 'text' => 'カテゴリー',

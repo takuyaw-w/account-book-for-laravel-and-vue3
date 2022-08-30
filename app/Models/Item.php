@@ -32,6 +32,6 @@ class Item extends Model
 
     public function getHrefAttribute()
     {
-        return route("item.detail", $this->attributes['id']);
+        return array_key_exists("id", $this->attributes) ? route("item.detail", $this->attributes['id']) : null ;
     }
 }
