@@ -34,7 +34,8 @@ class GeneratePassword extends Command
         }
 
         $generatedNum = intval($this->option("quantity"));
-        $passwords = $this->generatePassword($generatedNum);
+        $length = intval($this->option("lengths"));
+        $passwords = $this->generatePassword($length, $generatedNum);
         $this->render($passwords);
         return 0;
     }
@@ -51,9 +52,8 @@ class GeneratePassword extends Command
         return true;
     }
 
-    private function generatePassword(int $generatedNum): array
+    private function generatePassword(int $length, int $generatedNum): array
     {
-        $length = intval($this->option("lengths"));
         $passwords = [];
         while(count($passwords) < $generatedNum) {
             $seed = \Str::random($length);
