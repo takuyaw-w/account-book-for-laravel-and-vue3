@@ -34,14 +34,13 @@ class GeneratePassword extends Command
         }
 
         $generatedNum = intval($this->option("quantity"));
-        $length = intval($this->option("lengths"));
-        $regexp = $this->generateRegexp($length);
-        $passwords = $this->generatePassword($regexp, $generatedNum);
+        $passwords = $this->generatePassword($generatedNum);
         $this->render($passwords);
         return 0;
     }
 
-    private function validate(array $options): bool {
+    private function validate(array $options): bool
+    {
         if(!ctype_digit($options["quantity"]) || !ctype_digit($options["lengths"])) {
             return false;
         }
@@ -52,16 +51,12 @@ class GeneratePassword extends Command
         return true;
     }
 
-    private function generateRegexp(int $length): string
+    private function generatePassword(int $generatedNum): array
     {
-        return "/^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)[!-~]{" . $length . ",}/u";
-    }
-
-    private function generatePassword(string $regexp, int $generatedNum): array {
         $passwords = [];
         while(count($passwords) < $generatedNum) {
-            $seed = \Str::random(intval($this->option("lengths")));
-            if (preg_match($regexp, $seed)) {
+            $seed = $this->randomString(intval($this->option("lengths")));
+            if (preg_match($this->regexp, $seed)) {
                 $hash = \Hash::make($seed);
                 $passwords[$seed] = $hash;
             }
@@ -69,7 +64,13 @@ class GeneratePassword extends Command
         return $passwords;
     }
 
-    private function render(array $passwords):void {
+    private function randomString(int $length): string
+    {
+        return \Str::random($length);
+    }
+
+    private function render(array $passwords):void
+    {
         echo "seed\thash\n";
         foreach ($passwords as $key => $val) {
             echo "$key\t$val\n";
