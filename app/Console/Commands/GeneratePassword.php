@@ -53,20 +53,16 @@ class GeneratePassword extends Command
 
     private function generatePassword(int $generatedNum): array
     {
+        $length = intval($this->option("lengths");
         $passwords = [];
         while(count($passwords) < $generatedNum) {
-            $seed = $this->randomString(intval($this->option("lengths")));
+            $seed = \Str::random($length);
             if (preg_match($this->regexp, $seed)) {
                 $hash = \Hash::make($seed);
                 $passwords[$seed] = $hash;
             }
         }
         return $passwords;
-    }
-
-    private function randomString(int $length): string
-    {
-        return \Str::random($length);
     }
 
     private function render(array $passwords):void
