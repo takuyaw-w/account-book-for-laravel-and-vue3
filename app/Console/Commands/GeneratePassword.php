@@ -65,7 +65,7 @@ class GeneratePassword extends Command
         return $passwords;
     }
 
-    private function render(array $passwords):void
+    private function render(array $passwords): void
     {
         echo "seed\thash\n";
         foreach ($passwords as $key => $val) {
