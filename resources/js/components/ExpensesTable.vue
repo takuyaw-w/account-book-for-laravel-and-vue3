@@ -11,7 +11,7 @@ defineProps<{
 
 <template>
     <div :class="$style.wrapper">
-        <table :class="$style.table">
+        <table class="table is-fullwidth">
             <thead>
                 <tr>
                     <th v-for="(header, index) in headers" :key="index">
@@ -23,9 +23,9 @@ defineProps<{
                 <tr v-for="(item, index) in items" :key="index">
                     <td v-for="(header, index) in headers" :key="index">
                         <template v-if="header.href">
-                            <v-btn variant="text" :href="item.href">
+                            <a variant="text" :href="item.href">
                                 {{ item[header.value] }}
-                            </v-btn>
+                            </a>
                         </template>
                         <template v-else>
                             {{ item[header.value] }}

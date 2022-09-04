@@ -1,20 +1,15 @@
 @extends('layout.default')
 @section('contents')
-    <v-row>
-        <v-col>
-            <v-breadcrumbs :items="{{ $paths }}"></v-breadcrumbs>
-        </v-col>
-    </v-row>
-    <v-row>
-        <v-col>
-            <v-card>
-                <v-card-title>
-                  集計表
-                </v-card-title>
-                <v-card-text>
-                    <expenses-table :headers="{{ $headers }}" :items="{{ $groupedItems }}"></expenses-table>
-                </v-card-text>
-            </v-card>
-        </v-col>
-    </v-row>
+    <div class="card mt-4">
+        <header class="card-header">
+            <p class="card-header-title">
+                Summary
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <expenses-table :headers="{{ $headers }}" :items="{{ $groupedItems }}"></expenses-table>
+            </div>
+        </div>
+    </div>
 @endsection

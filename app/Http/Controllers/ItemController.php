@@ -99,7 +99,7 @@ class ItemController extends Controller
     public function update(Request $request)
     {
         $item = Item::where("id", $request->id)->first();
-        $item->category = $item->category;
+        $item->category = $request->category;
         $item->price = $request->price;
         $item->purchase_date = $request->purchase_date;
         $item->note = $request->note;
